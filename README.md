@@ -1,62 +1,67 @@
-# Vault Weaver
+# 🕸️ Vault Weaver
 
-A Model Context Protocol (MCP) server for Obsidian knowledge management. Create notes, search content, discover backlinks, and visualize your knowledge graph.
+**AI-powered Obsidian knowledge management - create notes, search content, discover backlinks, and visualize your knowledge graph**
 
-## Overview
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://github.com/anthropics/mcp)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js)](https://nodejs.org/)
+[![Obsidian](https://img.shields.io/badge/Obsidian-Compatible-7C3AED?logo=obsidian)](https://obsidian.md/)
 
-Vault Weaver bridges your Obsidian vault with AI assistants, enabling natural language interactions with your personal knowledge base. Ask questions about your notes, create new content, and explore connections you might have missed.
+---
 
-### Why Use Vault Weaver?
+## 🤔 The Knowledge Challenge
 
-**Without Vault Weaver:**
-- Manually searching through hundreds of notes
-- Missing connections between related topics
-- Forgetting to add proper metadata and tags
-- Difficulty maintaining consistent note structure
+**"My notes are scattered and disconnected"**
 
-**With Vault Weaver:**
-```
-"Find all my notes about machine learning"
-"Create a meeting note for today's standup with proper frontmatter"
-"What notes link to my project roadmap?"
-"Show me the knowledge graph around my 'productivity' note"
-```
+You've built a vault of hundreds of notes, but finding connections and maintaining structure is overwhelming.
 
-## Features
+- 🔍 Manually searching through notes
+- 🔗 Missing connections between topics
+- 📝 Inconsistent metadata and tags
+- 🗂️ Difficulty maintaining structure
 
-- **Note Creation** - Create markdown notes with YAML frontmatter and folder organization
-- **Full-Text Search** - Search by content, title, tags, or folder
-- **Backlink Discovery** - Find all notes that reference a specific note
-- **Graph Visualization** - Generate connection graphs with configurable depth
-- **Frontmatter Management** - Update metadata on existing notes
+**Vault Weaver bridges your vault with AI** - search, create, link, and visualize your knowledge through natural language.
 
-## Installation
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📝 **Note Creation** | Create markdown notes with YAML frontmatter and folder organization |
+| 🔍 **Full-Text Search** | Search by content, title, tags, or folder |
+| 🔗 **Backlink Discovery** | Find all notes that reference a specific note |
+| 🕸️ **Graph Visualization** | Generate connection graphs with configurable depth |
+| 📋 **Frontmatter Management** | Update metadata on existing notes |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- Obsidian vault (local folder)
+- Claude Desktop
+
+### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/consigcody94/vault-weaver.git
 cd vault-weaver
-
-# Install dependencies
 npm install
-
-# Build the project
 npm run build
 ```
 
-## Configuration
+### Configure Claude Desktop
 
-### Environment Variable
+Add to your config file:
 
-Set your Obsidian vault path:
-
-```bash
-export OBSIDIAN_VAULT_PATH="/path/to/your/obsidian/vault"
-```
-
-### Claude Desktop Integration
-
-Add to your `claude_desktop_config.json`:
+| Platform | Path |
+|----------|------|
+| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
+| Linux | `~/.config/Claude/claude_desktop_config.json` |
 
 ```json
 {
@@ -72,23 +77,75 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-**Config file locations:**
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-- Linux: `~/.config/Claude/claude_desktop_config.json`
-
 **Finding your vault path:**
-- macOS: Usually `~/Documents/Obsidian/YourVaultName`
-- Windows: Usually `C:\Users\YourName\Documents\Obsidian\YourVaultName`
-- Linux: Usually `~/Documents/Obsidian/YourVaultName`
+| Platform | Typical Location |
+|----------|------------------|
+| macOS | `~/Documents/Obsidian/YourVaultName` |
+| Windows | `C:\Users\YourName\Documents\Obsidian\YourVaultName` |
+| Linux | `~/Documents/Obsidian/YourVaultName` |
 
-## Tools Reference
+### Restart Claude Desktop
+Completely quit and reopen Claude Desktop to load the MCP server.
+
+---
+
+## 💬 Usage Examples
+
+### Create Notes
+```
+"Create a meeting note for today's standup with attendees and action items"
+→ Creates note with proper frontmatter, folder organization, and structure
+
+"Add a new research note about machine learning with tags for AI and papers"
+→ Creates tagged note in research folder with YAML frontmatter
+```
+
+### Search Your Vault
+```
+"Find all my notes about machine learning"
+→ Returns matching notes with relevant snippets
+
+"Search for active projects tagged with 'priority'"
+→ Filters by tag and returns project notes
+```
+
+### Discover Connections
+```
+"What notes link to my project roadmap?"
+→ Finds all backlinks with context
+
+"Show me the knowledge graph around my 'productivity' note"
+→ Generates visual connection map
+```
+
+### Manage Metadata
+```
+"Update the status to 'completed' on my API redesign note"
+→ Merges new frontmatter with existing
+
+"Add tags 'done' and 'q1' to the feature spec"
+→ Updates YAML frontmatter
+```
+
+---
+
+## 🛠️ Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `create_note` | Create a new markdown note with frontmatter |
+| `search_notes` | Search notes by content, title, tags, or folder |
+| `get_backlinks` | Find all notes that link to a specific note |
+| `create_graph` | Generate a graph of note connections |
+| `update_frontmatter` | Update or add YAML frontmatter to existing notes |
+
+---
+
+## 📊 Tool Details
 
 ### create_note
 
 Create a new markdown note in your vault.
-
-**Parameters:**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -97,61 +154,24 @@ Create a new markdown note in your vault.
 | `folder` | string | No | Folder path relative to vault root |
 | `frontmatter` | object | No | YAML frontmatter metadata |
 
-**Example - Simple note:**
-
-```json
-{
-  "title": "Quick Thought",
-  "content": "# Quick Thought\n\nRemember to review the API documentation."
-}
-```
-
-**Example - Note with frontmatter and folder:**
+**Example with frontmatter:**
 
 ```json
 {
   "title": "Meeting Notes 2024-01-15",
-  "content": "# Team Sync\n\n## Attendees\n- Alice\n- Bob\n- Carol\n\n## Topics\n- Sprint review\n- Q1 planning\n\n## Action Items\n- [ ] Review PRs\n- [ ] Update documentation",
+  "content": "# Team Sync\n\n## Attendees\n- Alice\n- Bob\n\n## Action Items\n- [ ] Review PRs",
   "folder": "meetings/2024",
   "frontmatter": {
-    "tags": ["meeting", "team", "sprint"],
+    "tags": ["meeting", "team"],
     "date": "2024-01-15",
-    "type": "meeting",
-    "attendees": ["Alice", "Bob", "Carol"]
+    "type": "meeting"
   }
 }
-```
-
-**Generated file structure:**
-
-```markdown
----
-tags:
-  - meeting
-  - team
-  - sprint
-date: 2024-01-15
-type: meeting
-attendees:
-  - Alice
-  - Bob
-  - Carol
----
-
-# Team Sync
-
-## Attendees
-- Alice
-- Bob
-- Carol
-...
 ```
 
 ### search_notes
 
 Search notes by content, title, tags, or folder.
-
-**Parameters:**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -160,93 +180,26 @@ Search notes by content, title, tags, or folder.
 | `folder` | string | No | Filter by folder path |
 | `limit` | number | No | Max results (default: 10, max: 100) |
 
-**Example - Basic search:**
-
-```json
-{
-  "query": "machine learning"
-}
-```
-
-**Example - Search with filters:**
-
-```json
-{
-  "query": "project",
-  "tag": "active",
-  "folder": "projects",
-  "limit": 20
-}
-```
-
-**Response includes:**
-- Matching note paths
-- Relevant content snippets
-- Frontmatter metadata
-- Match relevance scores
-
 ### get_backlinks
 
 Find all notes that link to a specific note using `[[wikilinks]]`.
-
-**Parameters:**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `notePath` | string | Yes | Path to note relative to vault root |
 
-**Example:**
-
-```json
-{
-  "notePath": "projects/new-feature.md"
-}
-```
-
-**Response includes:**
-- List of linking notes
-- Link context (surrounding text)
-- Link types (direct link, alias, embed)
-
 ### create_graph
 
 Generate a graph of note connections.
-
-**Parameters:**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `rootNote` | string | No | Starting note (omit for entire vault) |
 | `depth` | number | No | Traversal depth (default: 2, max: 5) |
 
-**Example - From specific note:**
-
-```json
-{
-  "rootNote": "index.md",
-  "depth": 3
-}
-```
-
-**Example - Entire vault:**
-
-```json
-{
-  "depth": 2
-}
-```
-
-**Response includes:**
-- Nodes (notes) with metadata
-- Edges (links) between notes
-- Connection counts per note
-- Cluster identification
-
 ### update_frontmatter
 
 Update or add YAML frontmatter to an existing note.
-
-**Parameters:**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -254,34 +207,9 @@ Update or add YAML frontmatter to an existing note.
 | `frontmatter` | object | Yes | Frontmatter fields to update |
 | `merge` | boolean | No | Merge with existing (default: true) |
 
-**Example - Merge with existing:**
+---
 
-```json
-{
-  "notePath": "projects/feature-x.md",
-  "frontmatter": {
-    "status": "completed",
-    "completed_date": "2024-01-15",
-    "tags": ["done"]
-  },
-  "merge": true
-}
-```
-
-**Example - Replace entirely:**
-
-```json
-{
-  "notePath": "projects/feature-x.md",
-  "frontmatter": {
-    "status": "archived",
-    "archived_date": "2024-01-20"
-  },
-  "merge": false
-}
-```
-
-## Workflow Examples
+## 🎯 Workflow Examples
 
 ### Daily Note Workflow
 
@@ -304,7 +232,7 @@ Update or add YAML frontmatter to an existing note.
 
 1. **Create research note:**
    ```
-   create_note with title: "ML Paper Review", folder: "research", frontmatter: {tags: ["ml", "paper"], status: "reading"}
+   create_note with title: "ML Paper Review", folder: "research", frontmatter: {tags: ["ml", "paper"]}
    ```
 
 2. **Find related notes:**
@@ -317,87 +245,68 @@ Update or add YAML frontmatter to an existing note.
    create_graph with rootNote: "research/ML Paper Review.md", depth: 2
    ```
 
-### Project Tracking
+---
 
-1. **Update project status:**
-   ```
-   update_frontmatter with notePath: "projects/api-redesign.md", frontmatter: {status: "in-progress", sprint: 5}
-   ```
+## 🔗 Obsidian Compatibility
 
-2. **Find all active projects:**
-   ```
-   search_notes with tag: "project", folder: "projects"
-   ```
+| Feature | Support |
+|---------|---------|
+| `[[Wikilinks]]` | ✅ Full support including aliases |
+| `#tags` | ✅ Both inline and frontmatter |
+| YAML Frontmatter | ✅ Full support via gray-matter |
+| Folders | ✅ Complete hierarchy support |
+| `![[Embeds]]` | ✅ Embed syntax recognition |
 
-3. **Check project references:**
-   ```
-   get_backlinks with notePath: "projects/api-redesign.md"
-   ```
+---
 
-## Obsidian Compatibility
+## 🔒 Security Notes
 
-### Supported Features
+| Principle | Description |
+|-----------|-------------|
+| Local only | Only accesses the specified vault directory |
+| No external calls | No data sent to external services |
+| File system only | All operations are local |
+| Backup recommended | Backup your vault before bulk operations |
 
-- **Wikilinks**: `[[note]]` and `[[note|alias]]` syntax
-- **Tags**: Both `#tag` inline and YAML frontmatter tags
-- **Frontmatter**: Full YAML frontmatter support via gray-matter
-- **Folders**: Complete folder hierarchy support
-- **Embeds**: `![[note]]` embed syntax recognition
+---
 
-### File Naming
+## 🐛 Troubleshooting
 
-- Notes are saved as `.md` files
-- Title becomes filename (special characters sanitized)
-- Folder paths are created automatically if they don't exist
+| Issue | Solution |
+|-------|----------|
+| "OBSIDIAN_VAULT_PATH required" | Set the environment variable in Claude Desktop config |
+| Notes not appearing | Reload Obsidian or check file permissions |
+| Search returns nothing | Try broader search terms, check excluded folders |
+| Backlinks missing | Ensure proper `[[wikilink]]` syntax |
 
-## Requirements
+---
+
+## 📋 Requirements
 
 - Node.js 18 or higher
 - Obsidian vault (local file system access)
 - Read/write permissions to vault directory
 
-## Troubleshooting
+---
 
-### "OBSIDIAN_VAULT_PATH environment variable is required"
-
-Set the environment variable in your shell or Claude Desktop config:
-```bash
-export OBSIDIAN_VAULT_PATH="/path/to/vault"
-```
-
-### Notes not appearing in Obsidian
-
-1. Ensure Obsidian is monitoring the correct vault
-2. Try clicking "Reload app without saving" in Obsidian
-3. Check file permissions
-
-### Search not finding expected results
-
-1. Ensure notes have been indexed (newly created notes may take a moment)
-2. Try broader search terms
-3. Check if notes are in excluded folders
-
-### Backlinks missing
-
-1. Ensure links use proper `[[wikilink]]` syntax
-2. Check for typos in note names
-3. Verify the target note exists
-
-## Security Notes
-
-- Vault Weaver only accesses the specified vault directory
-- No data is sent to external services
-- All operations are local file system only
-- Backup your vault before bulk operations
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Author
+---
 
-consigcody94
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 👤 Author
+
+**consigcody94**
+
+---
+
+<p align="center">
+  <i>Weave your knowledge into a connected web.</i>
+</p>
